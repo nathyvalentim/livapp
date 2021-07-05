@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Avatar</title>
+		{% load static %}
+<link rel="shortcut icon" href="{% static 'livapp/images/favicon.png' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css"  href="{% static 'css/bootstrap-theme.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'livapp/style.css' %}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+
+        function enviarvalor(nomeimagem){
+            //var text = document.getElementById('text-to-analyze').value;
+			//alert("Funcao enviarvalor"); 
+            /*$.ajax({
+                  type: "GET",
+                  url: "{{ request.build_absolute_uri }}salvaavatar",
+				  
+                  data: {
+				  csrfmiddlewaretoken:'{{ csrf_token }}',
+                     "nome": nomeimagem,
+					 //
+                  },
+                  success: function(data){
+                      console.log("success");
+                      console.log(data);
+                  },
+                  failure: function(data){
+                      console.log("failure");
+                      console.log(data);
+                  },
+              });*/
+			  
+			  localStorage.setItem('avatar',nomeimagem);
+			  //enviaravatarbd(nomeimagem);
+
+			  
+        }
+		
+		function enviaravatarbd(nomeavatar){
+		
+			if (nomeavatar == "caozinho.png"){
+			nomeavatar = "Cachorro";
+			}
+			
+			if (nomeavatar == "mcqueen.png"){
+			nomeavatar = "Carro";
+			}
+			
+			if (nomeavatar == "_avatarsuperheroi.png"){
+			nomeavatar = "Super Heroi";
+			}
+			
+			if (nomeavatar == "trem.png"){
+			nomeavatar = "Trem";
+			}
+            //var text = document.getElementById('text-to-analyze').value;
+			//alert("Funcao enviarvalor"); 
+			var data = {};
+			data ["avatar"] = nomeavatar;
+			data ["tema_1"] = "";
+			data ["tema_2"] = "";
+			data ["tema_3"] = "";
+			data ["tema_4"] = "";
+            $.ajax({
+                  type: "GET",
+                  url: "{{ request.build_absolute_uri }}salvaavatarbd",
+				  
+                  data: data,
+                  success: function(data){
+                      console.log("success");
+                      console.log(data);
+                  },
+                  failure: function(data){
+                      console.log("failure");
+                      console.log(data);
+                  },
+              });
+			  
+			  
+
+			  
+        }
+    </script>
+
+
+
+
+</head>
+
+
+
+
+<body class="avatar">
+
+
+<div class="container">
+<h1 class="page-header">
+					Escolha o seu personagem favorito!
+					</h1>
+					<div class="row">
+
+<div>
+
+<div>
+           
+
+
+
+
+		<div class="col-sm-12 col-md-3">
+		<a href="{% url 'livapp:picture' %}"><button id="close-image" onclick="enviarvalor('_avatarsuperheroi.png')"> <img border="0"  width="120" height="140" src="{% static 'livapp/images/_avatarsuperheroi.png' %}"> </button></a>
+		</div>
+
+
+
+		<div class="col-sm-12 col-md-3">
+		<a href="{% url 'livapp:picture' %}"><button id="close-image" onclick="enviarvalor('mcqueen.png')"> <img border="0"  width="120" height="140" src="{% static 'livapp/images/mcqueen.png' %}"> </button></a>
+		</div>
+
+
+
+		<div class="col-sm-12 col-md-3">
+		<a href="{% url 'livapp:picture' %}"><button id="close-image" onclick="enviarvalor('trem.png')"> <img border="0"  width="120" height="140" src="{% static 'livapp/images/trem.png' %}"> </button></a>
+		</div>
+
+		
+
+		<div class="col-sm-12 col-md-3">
+		<a href="{% url 'livapp:picture' %}"><button id="close-image" onclick="enviarvalor('caozinho.png')"> <img border="0"  width="120" height="140" src="{% static 'livapp/images/caozinho.png' %}"> </button></a>
+		</div>
+
+	        </div>	
+		
+		
+		<!-- <button id="downloader"  download="image.png">Download!</button>-->
+		
+		
+
+</div>
+</div>
+</div>
+
+
+<script>
+
+
+</script>
+
+</body>
+</html>
